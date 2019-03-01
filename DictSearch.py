@@ -37,10 +37,13 @@ def merriam_webster(dic):
 		req=req.read()
 		print("requested succeeded")
 		soup=BeautifulSoup(req,'html.parser')
-		dif=soup.find_all('span',class_="dtText")[0].text.split('\n')[0].strip(':')
-		print("word: "+word)
-		print("deffinition: "+dif)
-		ans[word]=dif
+		try:
+			dif=soup.find_all('span',class_="dtText")[0].text.split('\n')[0].strip(':')
+			print("word: "+word)
+			print("deffinition: "+dif)
+			ans[word]=dif
+		except:
+			print("cannot find definitions")
 		print()
 		
 	return ans
